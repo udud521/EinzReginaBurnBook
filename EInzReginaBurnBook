@@ -1,5 +1,7 @@
 local G2L = {}
 
+-- UI 생성
+
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
 G2L["1"].IgnoreGuiInset = true
 G2L["1"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
@@ -10,62 +12,71 @@ G2L["1"].ResetOnSpawn = false
 G2L["2"] = Instance.new("ImageButton", G2L["1"])
 G2L["2"].BorderSizePixel = 0
 G2L["2"].BackgroundTransparency = 1
+G2L["2"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["2"].Image = "rbxassetid://92949541355058"
 G2L["2"].Size = UDim2.new(0, 200, 0, 275)
+G2L["2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["2"].Name = "ClosedBook"
 G2L["2"].Position = UDim2.new(0.83425, 0, 0.27387, 0)
 
 G2L["3"] = Instance.new("Frame", G2L["1"])
 G2L["3"].Active = true
 G2L["3"].BorderSizePixel = 0
-G2L["3"].BackgroundColor3 = Color3.new(1, 1, 1)
+G2L["3"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["3"].Size = UDim2.new(0, 340, 0, 260)
 G2L["3"].Position = UDim2.new(0.73174, 0, 0.28395, 0)
-G2L["3"].BackgroundTransparency = 1
+G2L["3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["3"].Name = "OpenBookFrame"
+G2L["3"].BackgroundTransparency = 1
 
 G2L["4"] = Instance.new("Frame", G2L["3"])
 G2L["4"].ZIndex = 2
 G2L["4"].BorderSizePixel = 0
-G2L["4"].BackgroundColor3 = Color3.new(1, 1, 1)
+G2L["4"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["4"].Size = UDim2.new(0, 282, 0, 30)
 G2L["4"].Position = UDim2.new(0.08235, 0, 0.20385, 0)
-G2L["4"].BackgroundTransparency = 1
+G2L["4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["4"].Name = "CommandEntry"
+G2L["4"].BackgroundTransparency = 1
 
 G2L["5"] = Instance.new("Frame", G2L["3"])
 G2L["5"].ZIndex = 2
 G2L["5"].BorderSizePixel = 0
-G2L["5"].BackgroundColor3 = Color3.new(1, 1, 1)
+G2L["5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["5"].Size = UDim2.new(0, 115, 0, 115)
 G2L["5"].Position = UDim2.new(0.10277, 0, 0.39231, 0)
-G2L["5"].BackgroundTransparency = 1
+G2L["5"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["5"].Name = "ProfileDisplay"
+G2L["5"].BackgroundTransparency = 1
 
 G2L["6"] = Instance.new("ImageLabel", G2L["5"])
 G2L["6"].ZIndex = 2
 G2L["6"].BorderSizePixel = 0
-G2L["6"].BackgroundColor3 = Color3.new(1, 1, 1)
+G2L["6"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["6"].Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
 G2L["6"].Size = UDim2.new(0, 115, 0, 115)
+G2L["6"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["6"].Name = "ProfileImage"
 G2L["6"].Position = UDim2.new(0, 0, 0, 0)
 
 G2L["7"] = Instance.new("ImageButton", G2L["3"])
 G2L["7"].BorderSizePixel = 0
 G2L["7"].BackgroundTransparency = 1
+G2L["7"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["7"].ZIndex = 2
 G2L["7"].Image = "rbxassetid://127584164564988"
 G2L["7"].Size = UDim2.new(0, 120, 0, 100)
+G2L["7"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["7"].Name = "TearButton"
 G2L["7"].Rotation = 101
 G2L["7"].Position = UDim2.new(0.77647, 0, 0.52692, 0)
 
 G2L["8"] = Instance.new("ImageLabel", G2L["3"])
 G2L["8"].BorderSizePixel = 0
-G2L["8"].BackgroundColor3 = Color3.new(1, 1, 1)
+G2L["8"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["8"].Image = "rbxassetid://116810517427218"
 G2L["8"].Size = UDim2.new(1, 0, 1, 0)
+G2L["8"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["8"].BackgroundTransparency = 1
 G2L["8"].Name = "OpenBookImage"
 
@@ -79,27 +90,32 @@ G2L["9"].TextWrapped = true
 G2L["9"].TextStrokeColor3 = Color3.fromRGB(199, 42, 53)
 G2L["9"].TextSize = 14
 G2L["9"].TextColor3 = Color3.fromRGB(199, 42, 53)
-G2L["9"].BackgroundColor3 = Color3.new(1, 1, 1)
+G2L["9"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["9"].FontFace = Font.new("rbxasset://fonts/families/Kalam.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 G2L["9"].ClearTextOnFocus = false
 G2L["9"].Size = UDim2.new(0, 282, 0, 30)
 G2L["9"].Position = UDim2.new(0.085, 0, 0.204, 0)
+G2L["9"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["9"].BackgroundTransparency = 1
--- TextScaled 제거 (고정 텍스트 크기)
+G2L["9"].Text = ""
+
+-- LocalScript 구현
 
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
-local bookGui = G2L["1"]
+local playerGui = player:WaitForChild("PlayerGui")
+local bookGui = playerGui:WaitForChild("BookGui")
 
 local ClosedBook = bookGui:WaitForChild("ClosedBook")
 local OpenBookFrame = bookGui:WaitForChild("OpenBookFrame")
 local OpenBookImage = OpenBookFrame:WaitForChild("OpenBookImage")
 local GossipCommand = OpenBookFrame:WaitForChild("GossipCommand")
 local TearButton = OpenBookFrame:WaitForChild("TearButton")
-local ProfileImage = OpenBookFrame:WaitForChild("ProfileDisplay"):WaitForChild("ProfileImage")
+local ProfileDisplay = OpenBookFrame:WaitForChild("ProfileDisplay")
+local ProfileImage = ProfileDisplay:WaitForChild("ProfileImage")
 
 OpenBookFrame.Visible = false
 TearButton.Visible = false
@@ -150,15 +166,18 @@ end
 local animationStopFlag = false
 local animationLoopConnection = nil
 
-local function AttachToFrontOf(targetRoot, heightOffset, rotateY, rotateX)
+local function AttachToFrontOf(targetRoot, heightOffset, rotateY, rotateX, distance)
 	local myRoot = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
 	if not myRoot then return end
 	animationStopFlag = false
 	if animationLoopConnection then animationLoopConnection:Disconnect() end
+	
+	distance = distance or 1.2
+	
 	animationLoopConnection = RunService.Stepped:Connect(function()
 		if animationStopFlag or not targetRoot or not myRoot then return end
 		local look = targetRoot.CFrame.LookVector
-		local pos = targetRoot.Position + look * 1.2 + Vector3.new(0, heightOffset or -0.5, 0)
+		local pos = targetRoot.Position + look * distance + Vector3.new(0, heightOffset or -0.5, 0)
 		local cf = CFrame.new(pos, targetRoot.Position)
 		if rotateY then cf = cf * CFrame.Angles(0, math.rad(180), 0) end
 		if rotateX then cf = cf * CFrame.Angles(math.rad(180), 0, 0) end
@@ -194,16 +213,16 @@ local function HandleCommand(text)
 	local targetChar = targetPlayer.Character
 	local targetRoot = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
 	if not targetRoot then return end
-
+	
 	if cmd == "suck" then
 		PlayAnimation("4210116953", 3)
-		AttachToFrontOf(targetRoot)
+		AttachToFrontOf(targetRoot, -0.5, false, false, 2.0)
 	elseif cmd == "fuck" then
 		PlayAnimation("14884037124", 2)
-		AttachToFrontOf(targetRoot, -0.5, true, false)
+		AttachToFrontOf(targetRoot, -0.5, true, false, 2.0)
 	elseif cmd == "69" then
 		PlayAnimation("5918726674", 3)
-		AttachToFrontOf(targetRoot, 0, false, true)
+		AttachToFrontOf(targetRoot, 0, true, true, 2.0)
 	end
 	TearButton.Visible = true
 end
