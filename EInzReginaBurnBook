@@ -248,13 +248,10 @@ local function C_a()
 			animationLoopConnection:Disconnect()
 		end
 
-		animationLoopConnection = RunService.Stepped:Connect(function()
-			if root and targetRoot and not animationStopFlag then
-				local forward = targetRoot.CFrame.LookVector
-				local offset = forward * 1.5 + Vector3.new(0, -0.7, 0)
-				root.CFrame = CFrame.new(targetRoot.Position + offset, targetRoot.Position)
-			end
-		end)
+		-- 플레이어 자신의 위치는 유지하고, 바라보는 방향만 대상과 동일하게 맞춤
+		local lookVector = targetRoot.CFrame.LookVector
+		local currentPos = root.CFrame.Position
+		root.CFrame = CFrame.new(currentPos, currentPos + lookVector)
 
 		local anim = Instance.new("Animation")
 		anim.AnimationId = "rbxassetid://7942885103"
@@ -290,13 +287,22 @@ local function C_a()
 		end
 	end)
 
+	local function FindPlayerByDisplayName(displayName)
+		for _, plr in pairs(Players:GetPlayers()) do
+			if plr.DisplayName:lower() == displayName:lower() then
+				return plr
+			end
+		end
+		return nil
+	end
+
 	local function HandleCommand(text)
 		local args = string.split(text, " ")
 		if #args < 2 then return end
 
 		local command = args[1]:lower()
-		local targetName = args[2]
-		local targetPlayer = Players:FindFirstChild(targetName)
+		local targetDisplayName = args[2]
+		local targetPlayer = FindPlayerByDisplayName(targetDisplayName)
 		if not targetPlayer then return end
 
 		UpdateProfileImage(targetPlayer.UserId)
