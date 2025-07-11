@@ -1,113 +1,105 @@
 local G2L = {}
 
--- StarterGui.BookGui
+-- GUI 생성 부분 (ScreenGui, 버튼, 프레임 등)
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
-G2L["1"]["IgnoreGuiInset"] = true
-G2L["1"]["ScreenInsets"] = Enum.ScreenInsets.DeviceSafeInsets
-G2L["1"]["Name"] = "BookGui"
-G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling
-G2L["1"]["ResetOnSpawn"] = false
+G2L["1"].IgnoreGuiInset = true
+G2L["1"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
+G2L["1"].Name = "BookGui"
+G2L["1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+G2L["1"].ResetOnSpawn = false
 
--- StarterGui.BookGui.ClosedBook
 G2L["2"] = Instance.new("ImageButton", G2L["1"])
-G2L["2"]["BorderSizePixel"] = 0
-G2L["2"]["BackgroundTransparency"] = 1
-G2L["2"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["2"]["Image"] = "rbxassetid://92949541355058"  -- 변경된 어셋 아이디
-G2L["2"]["Size"] = UDim2.new(0, 200, 0, 275)
-G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["2"]["Name"] = "ClosedBook"
-G2L["2"]["Position"] = UDim2.new(0.83425, 0, 0.27387, 0)
+G2L["2"].BorderSizePixel = 0
+G2L["2"].BackgroundTransparency = 1
+G2L["2"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["2"].Image = "rbxassetid://92949541355058"
+G2L["2"].Size = UDim2.new(0, 200, 0, 275)
+G2L["2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["2"].Name = "ClosedBook"
+G2L["2"].Position = UDim2.new(0.83425, 0, 0.27387, 0)
 
--- StarterGui.BookGui.OpenBookFrame
 G2L["3"] = Instance.new("Frame", G2L["1"])
-G2L["3"]["Active"] = true
-G2L["3"]["BorderSizePixel"] = 0
-G2L["3"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["3"]["Size"] = UDim2.new(0, 340, 0, 260)
-G2L["3"]["Position"] = UDim2.new(0.73174, 0, 0.28395, 0)
-G2L["3"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["3"]["Name"] = "OpenBookFrame"
-G2L["3"]["BackgroundTransparency"] = 1
+G2L["3"].Active = true
+G2L["3"].BorderSizePixel = 0
+G2L["3"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["3"].Size = UDim2.new(0, 340, 0, 260)
+G2L["3"].Position = UDim2.new(0.73174, 0, 0.28395, 0)
+G2L["3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["3"].Name = "OpenBookFrame"
+G2L["3"].BackgroundTransparency = 1
 
--- StarterGui.BookGui.OpenBookFrame.CommandEntry
 G2L["4"] = Instance.new("Frame", G2L["3"])
-G2L["4"]["ZIndex"] = 2
-G2L["4"]["BorderSizePixel"] = 0
-G2L["4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["4"]["Size"] = UDim2.new(0, 282, 0, 30)
-G2L["4"]["Position"] = UDim2.new(0.08235, 0, 0.20385, 0)
-G2L["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["4"]["Name"] = "CommandEntry"
-G2L["4"]["BackgroundTransparency"] = 1
+G2L["4"].ZIndex = 2
+G2L["4"].BorderSizePixel = 0
+G2L["4"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["4"].Size = UDim2.new(0, 282, 0, 30)
+G2L["4"].Position = UDim2.new(0.08235, 0, 0.20385, 0)
+G2L["4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["4"].Name = "CommandEntry"
+G2L["4"].BackgroundTransparency = 1
 
--- StarterGui.BookGui.OpenBookFrame.ProfileDisplay
 G2L["5"] = Instance.new("Frame", G2L["3"])
-G2L["5"]["ZIndex"] = 2
-G2L["5"]["BorderSizePixel"] = 0
-G2L["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["5"]["Size"] = UDim2.new(0, 115, 0, 115)
-G2L["5"]["Position"] = UDim2.new(0.10277, 0, 0.39231, 0)
-G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["5"]["Name"] = "ProfileDisplay"
-G2L["5"]["BackgroundTransparency"] = 1
+G2L["5"].ZIndex = 2
+G2L["5"].BorderSizePixel = 0
+G2L["5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["5"].Size = UDim2.new(0, 115, 0, 115)
+G2L["5"].Position = UDim2.new(0.10277, 0, 0.39231, 0)
+G2L["5"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["5"].Name = "ProfileDisplay"
+G2L["5"].BackgroundTransparency = 1
 
--- StarterGui.BookGui.OpenBookFrame.ProfileDisplay.ProfileImage
 G2L["6"] = Instance.new("ImageLabel", G2L["5"])
-G2L["6"]["ZIndex"] = 2
-G2L["6"]["BorderSizePixel"] = 0
-G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["6"]["Image"] = "rbxasset://textures/ui/GuiImagePlaceholder.png"
-G2L["6"]["Size"] = UDim2.new(0, 115, 0, 115)
-G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["6"]["Name"] = "ProfileImage"
-G2L["6"]["Position"] = UDim2.new(0.00034, 0, 0, 0)
+G2L["6"].ZIndex = 2
+G2L["6"].BorderSizePixel = 0
+G2L["6"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["6"].Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+G2L["6"].Size = UDim2.new(0, 115, 0, 115)
+G2L["6"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["6"].Name = "ProfileImage"
+G2L["6"].Position = UDim2.new(0.00034, 0, 0, 0)
 
--- StarterGui.BookGui.OpenBookFrame.TearButton
 G2L["7"] = Instance.new("ImageButton", G2L["3"])
-G2L["7"]["BorderSizePixel"] = 0
-G2L["7"]["BackgroundTransparency"] = 1
-G2L["7"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["7"]["ZIndex"] = 2
-G2L["7"]["Image"] = "rbxassetid://127584164564988"
-G2L["7"]["Size"] = UDim2.new(0, 120, 0, 100)
-G2L["7"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["7"]["Name"] = "TearButton"
-G2L["7"]["Rotation"] = 101
-G2L["7"]["Position"] = UDim2.new(0.77647, 0, 0.52692, 0)
+G2L["7"].BorderSizePixel = 0
+G2L["7"].BackgroundTransparency = 1
+G2L["7"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["7"].ZIndex = 2
+G2L["7"].Image = "rbxassetid://127584164564988"
+G2L["7"].Size = UDim2.new(0, 120, 0, 100)
+G2L["7"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["7"].Name = "TearButton"
+G2L["7"].Rotation = 101
+G2L["7"].Position = UDim2.new(0.77647, 0, 0.52692, 0)
 
--- StarterGui.BookGui.OpenBookFrame.OpenBookImage
 G2L["8"] = Instance.new("ImageLabel", G2L["3"])
-G2L["8"]["BorderSizePixel"] = 0
-G2L["8"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["8"]["Image"] = "rbxassetid://116810517427218"
-G2L["8"]["Size"] = UDim2.new(1, 0, 1, 0)
-G2L["8"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["8"]["BackgroundTransparency"] = 1
-G2L["8"]["Name"] = "OpenBookImage"
+G2L["8"].BorderSizePixel = 0
+G2L["8"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["8"].Image = "rbxassetid://116810517427218"
+G2L["8"].Size = UDim2.new(1, 0, 1, 0)
+G2L["8"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["8"].BackgroundTransparency = 1
+G2L["8"].Name = "OpenBookImage"
 
--- StarterGui.BookGui.OpenBookFrame.GossipCommand
 G2L["9"] = Instance.new("TextBox", G2L["3"])
-G2L["9"]["CursorPosition"] = -1
-G2L["9"]["Name"] = "GossipCommand"
-G2L["9"]["TextXAlignment"] = Enum.TextXAlignment.Left
-G2L["9"]["PlaceholderColor3"] = Color3.fromRGB(199, 42, 53)
-G2L["9"]["BorderSizePixel"] = 0
-G2L["9"]["TextWrapped"] = true
-G2L["9"]["TextStrokeColor3"] = Color3.fromRGB(199, 42, 53)
-G2L["9"]["TextSize"] = 14
-G2L["9"]["TextColor3"] = Color3.fromRGB(199, 42, 53)
-G2L["9"]["TextScaled"] = true
-G2L["9"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
-G2L["9"]["FontFace"] = Font.new("rbxasset://fonts/families/Kalam.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-G2L["9"]["ClearTextOnFocus"] = false
-G2L["9"]["Size"] = UDim2.new(0, 282, 0, 30)
-G2L["9"]["Position"] = UDim2.new(0.085, 0, 0.204, 0)
-G2L["9"]["BorderColor3"] = Color3.fromRGB(0, 0, 0)
-G2L["9"]["Text"] = ""
-G2L["9"]["BackgroundTransparency"] = 1
+G2L["9"].CursorPosition = -1
+G2L["9"].Name = "GossipCommand"
+G2L["9"].TextXAlignment = Enum.TextXAlignment.Left
+G2L["9"].PlaceholderColor3 = Color3.fromRGB(199, 42, 53)
+G2L["9"].BorderSizePixel = 0
+G2L["9"].TextWrapped = true
+G2L["9"].TextStrokeColor3 = Color3.fromRGB(199, 42, 53)
+G2L["9"].TextSize = 14
+G2L["9"].TextColor3 = Color3.fromRGB(199, 42, 53)
+G2L["9"].TextScaled = true
+G2L["9"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["9"].FontFace = Font.new("rbxasset://fonts/families/Kalam.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+G2L["9"].ClearTextOnFocus = false
+G2L["9"].Size = UDim2.new(0, 282, 0, 30)
+G2L["9"].Position = UDim2.new(0.085, 0, 0.204, 0)
+G2L["9"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["9"].Text = ""
+G2L["9"].BackgroundTransparency = 1
 
--- StarterGui.BookGui.LocalScript
+-- 로컬스크립트 부분 (기능 구현)
 G2L["a"] = Instance.new("LocalScript", G2L["1"])
 
 local function C_a()
@@ -208,8 +200,8 @@ local function C_a()
 
 		animationLoopConnection = RunService.Stepped:Connect(function()
 			if root and targetRoot and not animationStopFlag then
-				local forward = targetRoot.CFrame.LookVector.Unit
-				local offset = forward * 1.2 + Vector3.new(0, -1.2, 0)  -- 더 낮게 이동
+				local forward = (targetRoot.CFrame.Position - root.Position).Unit  -- 마주보는 방향
+				local offset = forward * 1.2 + Vector3.new(0, -1.2, 0)  -- 좀 더 낮게 이동
 				root.CFrame = CFrame.new(targetRoot.Position + offset, targetRoot.Position)
 			end
 		end)
@@ -250,8 +242,8 @@ local function C_a()
 
 		animationLoopConnection = RunService.Stepped:Connect(function()
 			if root and targetRoot and not animationStopFlag then
-				local forward = targetRoot.CFrame.LookVector  -- 상대방 바라보는 방향 그대로 따라감
-				local offset = forward * 1.5 + Vector3.new(0, -1.2, 0)  -- 더 낮게 이동
+				local forward = targetRoot.CFrame.LookVector  -- 상대 아바타 바라보는 방향
+				local offset = forward * 1.5 + Vector3.new(0, -1.5, 0)  -- 더 낮게 이동
 				root.CFrame = CFrame.new(targetRoot.Position + offset, targetRoot.Position)
 			end
 		end)
@@ -273,6 +265,20 @@ local function C_a()
 		end)
 	end
 
+	local function FindPlayerByName(name)
+		-- 먼저 UserName 으로 찾기
+		local plr = Players:FindFirstChild(name)
+		if plr then return plr end
+		-- 없으면 DisplayName 으로 찾기 (대소문자 구분 없이)
+		name = name:lower()
+		for _, p in pairs(Players:GetPlayers()) do
+			if p.DisplayName:lower() == name then
+				return p
+			end
+		end
+		return nil
+	end
+
 	TearButton.MouseButton1Click:Connect(function()
 		ProfileImage.Image = ""
 		TearButton.Visible = false
@@ -288,7 +294,7 @@ local function C_a()
 				StopAllAnimations(humanoid)
 			end
 		end
-		GossipCommand.Text = ""  -- 명령어 입력란 클리어
+		GossipCommand.Text = ""
 	end)
 
 	local function HandleCommand(text)
@@ -297,7 +303,7 @@ local function C_a()
 
 		local command = args[1]:lower()
 		local targetName = args[2]
-		local targetPlayer = Players:FindFirstChild(targetName)
+		local targetPlayer = FindPlayerByName(targetName)
 		if not targetPlayer then return end
 
 		UpdateProfileImage(targetPlayer.UserId)
