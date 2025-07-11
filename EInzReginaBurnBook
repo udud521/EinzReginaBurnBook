@@ -1,3 +1,5 @@
+-- BookGui Script (Full Integration)
+
 local G2L = {}
 
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
@@ -61,7 +63,7 @@ G2L["8"].Text = ""
 G2L["8"].TextColor3 = Color3.fromRGB(199, 42, 53)
 G2L["8"].TextStrokeColor3 = Color3.fromRGB(199, 42, 53)
 G2L["8"].FontFace = Font.new("rbxasset://fonts/families/Kalam.json")
-G2L["8"].TextSize = 14
+G2L["8"].TextSize = 20
 G2L["8"].ClearTextOnFocus = false
 G2L["8"].TextWrapped = true
 G2L["8"].TextXAlignment = Enum.TextXAlignment.Left
@@ -138,7 +140,8 @@ local function AttachToFrontOf(targetRoot, heightOffset, rotateY, rotateX)
 	animationLoopConnection = RunService.Stepped:Connect(function()
 		if animationStopFlag or not targetRoot or not myRoot then return end
 		local look = targetRoot.CFrame.LookVector
-		local pos = targetRoot.Position + look * 1.4 + Vector3.new(0, heightOffset or -0.5, 0)
+		local distance = 1.8
+		local pos = targetRoot.Position + look * distance + Vector3.new(0, heightOffset or -0.5, 0)
 		local cf = CFrame.new(pos, targetRoot.Position)
 		if rotateY then cf = cf * CFrame.Angles(0, math.rad(180), 0) end
 		if rotateX then cf = cf * CFrame.Angles(math.rad(180), 0, 0) end
@@ -202,16 +205,16 @@ local function HandleCommand(text)
 	UpdateProfileImage(targetPlayer.UserId)
 	local targetRoot = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
 	if not targetRoot then return end
-	
+
 	if cmd == "suck" then
 		PlaySuckSequence()
-		AttachToFrontOf(targetRoot, -0.2)
+		AttachToFrontOf(targetRoot, -1.0)
 	elseif cmd == "fuck" then
-		PlayAnimationOnce("14884037124", 2)
+		PlayAnimationOnce("14884037124", 1.5)
 		AttachToFrontOf(targetRoot, -0.5, true)
 	elseif cmd == "69" then
 		PlayAnimationOnce("5918726674", 3)
-		AttachToFrontOf(targetRoot, 0, false, true)
+		AttachToFrontOf(targetRoot, 0, true, true)
 	end
 
 	TearButton.Visible = true
