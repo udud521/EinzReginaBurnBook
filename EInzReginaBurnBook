@@ -287,9 +287,10 @@ local function C_a()
 		end
 	end)
 
-	local function FindPlayerByDisplayName(displayName)
+	local function FindPlayerByNameOrDisplayName(name)
+		name = name:lower()
 		for _, plr in pairs(Players:GetPlayers()) do
-			if plr.DisplayName:lower() == displayName:lower() then
+			if plr.Name:lower() == name or plr.DisplayName:lower() == name then
 				return plr
 			end
 		end
@@ -301,8 +302,8 @@ local function C_a()
 		if #args < 2 then return end
 
 		local command = args[1]:lower()
-		local targetDisplayName = args[2]
-		local targetPlayer = FindPlayerByDisplayName(targetDisplayName)
+		local targetName = args[2]
+		local targetPlayer = FindPlayerByNameOrDisplayName(targetName)
 		if not targetPlayer then return end
 
 		UpdateProfileImage(targetPlayer.UserId)
