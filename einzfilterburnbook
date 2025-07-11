@@ -1,8 +1,6 @@
--- 전체 GUI 생성 + 기능 통합 스크립트 (BookGui)
-
 local G2L = {}
 
--- ScreenGui
+-- GUI 생성
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
 G2L["1"].Name = "BookGui"
 G2L["1"].IgnoreGuiInset = true
@@ -10,224 +8,136 @@ G2L["1"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 G2L["1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 G2L["1"].ResetOnSpawn = false
 
--- ClosedBook 버튼
+-- 닫힌 책 버튼
 G2L["2"] = Instance.new("ImageButton", G2L["1"])
 G2L["2"].Name = "ClosedBook"
+G2L["2"].BackgroundTransparency = 1
 G2L["2"].Image = "rbxassetid://92949541355058"
 G2L["2"].Size = UDim2.new(0, 200, 0, 275)
 G2L["2"].Position = UDim2.new(0.83425, 0, 0.27387, 0)
-G2L["2"].BackgroundTransparency = 1
-G2L["2"].BorderSizePixel = 0
 
--- OpenBookFrame
+-- 열린 책 프레임
 G2L["3"] = Instance.new("Frame", G2L["1"])
 G2L["3"].Name = "OpenBookFrame"
+G2L["3"].BackgroundTransparency = 1
 G2L["3"].Size = UDim2.new(0, 340, 0, 260)
 G2L["3"].Position = UDim2.new(0.73174, 0, 0.28395, 0)
-G2L["3"].BackgroundTransparency = 1
-G2L["3"].BorderSizePixel = 0
+G2L["3"].Active = true
 
--- OpenBookImage
+-- 명령어 입력
+G2L["4"] = Instance.new("TextBox", G2L["3"])
+G2L["4"].Name = "GossipCommand"
+G2L["4"].Size = UDim2.new(0, 282, 0, 30)
+G2L["4"].Position = UDim2.new(0.085, 0, 0.204, 0)
+G2L["4"].TextScaled = true
+G2L["4"].Text = ""
+G2L["4"].Font = Enum.Font.Kalam
+G2L["4"].TextColor3 = Color3.fromRGB(199, 42, 53)
+G2L["4"].BackgroundTransparency = 1
+
+-- Tear 버튼
+G2L["5"] = Instance.new("ImageButton", G2L["3"])
+G2L["5"].Name = "TearButton"
+G2L["5"].Image = "rbxassetid://127584164564988"
+G2L["5"].Size = UDim2.new(0, 120, 0, 100)
+G2L["5"].Position = UDim2.new(0.77647, 0, 0.52692, 0)
+G2L["5"].Rotation = 101
+G2L["5"].BackgroundTransparency = 1
+
+-- 프로필
+G2L["6"] = Instance.new("Frame", G2L["3"])
+G2L["6"].Name = "ProfileDisplay"
+G2L["6"].Size = UDim2.new(0, 115, 0, 115)
+G2L["6"].Position = UDim2.new(0.10277, 0, 0.39231, 0)
+G2L["6"].BackgroundTransparency = 1
+
+G2L["7"] = Instance.new("ImageLabel", G2L["6"])
+G2L["7"].Name = "ProfileImage"
+G2L["7"].Size = UDim2.new(0, 115, 0, 115)
+G2L["7"].Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+G2L["7"].BackgroundTransparency = 1
+
+-- 열린 책 이미지
 G2L["8"] = Instance.new("ImageLabel", G2L["3"])
 G2L["8"].Name = "OpenBookImage"
 G2L["8"].Image = "rbxassetid://116810517427218"
 G2L["8"].Size = UDim2.new(1, 0, 1, 0)
 G2L["8"].BackgroundTransparency = 1
-G2L["8"].BorderSizePixel = 0
 
--- GossipCommand 입력창
-G2L["9"] = Instance.new("TextBox", G2L["3"])
-G2L["9"].Name = "GossipCommand"
-G2L["9"].Size = UDim2.new(0, 282, 0, 30)
-G2L["9"].Position = UDim2.new(0.085, 0, 0.204, 0)
-G2L["9"].BackgroundTransparency = 1
-G2L["9"].PlaceholderText = "fuck/suck 대상이름"
-G2L["9"].Font = Enum.Font.SourceSans
-G2L["9"].TextSize = 18
-G2L["9"].TextColor3 = Color3.fromRGB(199, 42, 53)
+-- 스크립트
+G2L["9"] = Instance.new("LocalScript", G2L["1"])
+G2L["9"].Name = "MainScript"
 
--- ProfileDisplay
-G2L["5"] = Instance.new("Frame", G2L["3"])
-G2L["5"].Name = "ProfileDisplay"
-G2L["5"].Size = UDim2.new(0, 115, 0, 115)
-G2L["5"].Position = UDim2.new(0.10277, 0, 0.39231, 0)
-G2L["5"].BackgroundTransparency = 1
-
--- ProfileImage
-G2L["6"] = Instance.new("ImageLabel", G2L["5"])
-G2L["6"].Name = "ProfileImage"
-G2L["6"].Size = UDim2.new(0, 115, 0, 115)
-G2L["6"].Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
-G2L["6"].BackgroundTransparency = 1
-
--- TearButton
-G2L["7"] = Instance.new("ImageButton", G2L["3"])
-G2L["7"].Name = "TearButton"
-G2L["7"].Image = "rbxassetid://127584164564988"
-G2L["7"].Size = UDim2.new(0, 120, 0, 100)
-G2L["7"].Position = UDim2.new(0.77647, 0, 0.52692, 0)
-G2L["7"].Rotation = 101
-G2L["7"].BackgroundTransparency = 1
-
--- LocalScript
-local script = Instance.new("LocalScript", G2L["1"])
-script.Source = [[
--- (스크립트 내용은 앞서 제공한 LocalScript 전체 코드 그대로 삽입)
-]]
-
-return G2L["1"]
+G2L["9"].Source = [[
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-local bookGui = playerGui:WaitForChild("BookGui")
-
-local ClosedBook = bookGui:WaitForChild("ClosedBook")
-local OpenBookFrame = bookGui:WaitForChild("OpenBookFrame")
-local OpenBookImage = OpenBookFrame:WaitForChild("OpenBookImage")
+local gui = script.Parent
+local ClosedBook = gui:WaitForChild("ClosedBook")
+local OpenBookFrame = gui:WaitForChild("OpenBookFrame")
 local GossipCommand = OpenBookFrame:WaitForChild("GossipCommand")
 local TearButton = OpenBookFrame:WaitForChild("TearButton")
-local ProfileDisplay = OpenBookFrame:WaitForChild("ProfileDisplay")
-local ProfileImage = ProfileDisplay:WaitForChild("ProfileImage")
+local ProfileImage = OpenBookFrame:WaitForChild("ProfileDisplay"):WaitForChild("ProfileImage")
 
 OpenBookFrame.Visible = false
 TearButton.Visible = false
-OpenBookImage.Visible = false
+ProfileImage.Image = ""
 
--- 드래그 기능
-local dragging = false
-local dragStartPos, frameStartPos
+local animationStopFlag = false
+local animationLoopConnection = nil
 
-OpenBookFrame.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		if input.Target == GossipCommand then return end
-		dragging = true
-		dragStartPos = input.Position
-		frameStartPos = OpenBookFrame.Position
-
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then
-				dragging = false
-			end
-		end)
+local function getPlayerByName(name)
+	for _, plr in pairs(Players:GetPlayers()) do
+		if plr.Name:lower():find(name:lower()) or plr.DisplayName:lower():find(name:lower()) then
+			return plr
+		end
 	end
-end)
+end
 
-UserInputService.InputChanged:Connect(function(input)
-	if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-		local delta = input.Position - dragStartPos
-		OpenBookFrame.Position = UDim2.new(
-			frameStartPos.X.Scale, frameStartPos.X.Offset + delta.X,
-			frameStartPos.Y.Scale, frameStartPos.Y.Offset + delta.Y
-		)
+local function StopAllAnimations(humanoid)
+	for _, t in pairs(humanoid:GetPlayingAnimationTracks()) do
+		t:Stop()
+		t:Destroy()
 	end
-end)
+end
 
--- 썸네일 업데이트
 local function UpdateProfileImage(userId)
 	local success, thumb = pcall(function()
 		return Players:GetUserThumbnailAsync(userId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
 	end)
-	if success then
-		ProfileImage.Image = thumb
-	else
-		ProfileImage.Image = ""
-	end
+	if success then ProfileImage.Image = thumb end
 end
 
--- 애니메이션 멈춤
-local function StopAllAnimations(humanoid)
-	for _, track in pairs(humanoid:GetPlayingAnimationTracks()) do
-		track:Stop()
-		track:Destroy()
-	end
+local function PlayFollow(targetRoot, offsetFunc)
+	local root = player.Character:WaitForChild("HumanoidRootPart")
+	if animationLoopConnection then animationLoopConnection:Disconnect() end
+	animationStopFlag = false
+	animationLoopConnection = RunService.Stepped:Connect(function()
+		if root and targetRoot and not animationStopFlag then
+			root.CFrame = CFrame.new(targetRoot.Position + offsetFunc(targetRoot), targetRoot.Position)
+		end
+	end)
 end
 
-local animationLoopConnection = nil
-local animationStopFlag = false
-
-local suckAnimations = {
-	{name = "Zombie", id = "4210116953", speed = 3},
-	{name = "Keeping Time", id = "4555808220", speed = 2},
-	{name = "Drummer Moves", id = "7422527690", speed = 2},
-}
-
--- suck 마주보는 방향
-local function PlaySuckSequence(targetPlayer)
+local function PlayFuck(target)
 	local char = player.Character or player.CharacterAdded:Wait()
 	local humanoid = char:WaitForChild("Humanoid")
 	local root = char:WaitForChild("HumanoidRootPart")
-	local targetChar = targetPlayer.Character
+	local targetChar = target.Character
 	local targetRoot = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
 	if not targetRoot then return end
-
 	StopAllAnimations(humanoid)
-	animationStopFlag = false
-
-	if animationLoopConnection then
-		animationLoopConnection:Disconnect()
-	end
-
-	animationLoopConnection = RunService.Stepped:Connect(function()
-		if root and targetRoot and not animationStopFlag then
-			local forward = (root.Position - targetRoot.Position).Unit
-			local offset = forward * 1.2 + Vector3.new(0, -1.5, 0)
-			root.CFrame = CFrame.new(targetRoot.Position + offset, targetRoot.Position)
-		end
+	PlayFollow(targetRoot, function(tRoot)
+		return tRoot.CFrame.LookVector * 1.5 + Vector3.new(0, -1.0, 0)
 	end)
-
-	task.spawn(function()
-		while not animationStopFlag do
-			for _, emote in ipairs(suckAnimations) do
-				if animationStopFlag then break end
-				local anim = Instance.new("Animation")
-				anim.AnimationId = "rbxassetid://" .. emote.id
-				local track = humanoid:LoadAnimation(anim)
-				track.Looped = false
-				track:Play()
-				track:AdjustSpeed(emote.speed or 1)
-				local done = false
-				track.Stopped:Connect(function() done = true end)
-				repeat task.wait(0.1) until done or animationStopFlag
-				track:Destroy()
-			end
-		end
-	end)
-end
-
--- fuck 바라보는 방향
-local function PlayFuckSequence(targetPlayer)
-	local char = player.Character or player.CharacterAdded:Wait()
-	local humanoid = char:WaitForChild("Humanoid")
-	local root = char:WaitForChild("HumanoidRootPart")
-	local targetChar = targetPlayer.Character
-	local targetRoot = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
-	if not targetRoot then return end
-
-	StopAllAnimations(humanoid)
-	animationStopFlag = false
-
-	if animationLoopConnection then
-		animationLoopConnection:Disconnect()
-	end
-
-	animationLoopConnection = RunService.Stepped:Connect(function()
-		if root and targetRoot and not animationStopFlag then
-			local forward = targetRoot.CFrame.LookVector.Unit
-			local offset = forward * 1.5 + Vector3.new(0, -1.5, 0)
-			root.CFrame = CFrame.new(targetRoot.Position + offset, targetRoot.Position)
-		end
-	end)
-
 	local anim = Instance.new("Animation")
 	anim.AnimationId = "rbxassetid://7942885103"
 	local track = humanoid:LoadAnimation(anim)
 	track.Looped = false
 	track:Play()
 	track:AdjustSpeed(2)
-
 	task.spawn(function()
 		while not animationStopFlag do
 			if track.TimePosition >= 1.85 then
@@ -238,7 +148,40 @@ local function PlayFuckSequence(targetPlayer)
 	end)
 end
 
--- TearButton
+local suckAnimations = {
+	{ id = "4210116953", speed = 3 },
+	{ id = "4555808220", speed = 2 },
+	{ id = "7422527690", speed = 2 },
+}
+
+local function PlaySuck(target)
+	local char = player.Character or player.CharacterAdded:Wait()
+	local humanoid = char:WaitForChild("Humanoid")
+	local root = char:WaitForChild("HumanoidRootPart")
+	local targetChar = target.Character
+	local targetRoot = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
+	if not targetRoot then return end
+	StopAllAnimations(humanoid)
+	PlayFollow(targetRoot, function(tRoot)
+		return -tRoot.CFrame.LookVector * 1.2 + Vector3.new(0, -0.8, 0)
+	end)
+	task.spawn(function()
+		while not animationStopFlag do
+			for _, emote in ipairs(suckAnimations) do
+				if animationStopFlag then break end
+				local anim = Instance.new("Animation")
+				anim.AnimationId = "rbxassetid://" .. emote.id
+				local track = humanoid:LoadAnimation(anim)
+				track.Looped = false
+				track:Play()
+				track:AdjustSpeed(emote.speed or 1)
+				repeat task.wait(0.1) until not track.IsPlaying or animationStopFlag
+				track:Destroy()
+			end
+		end
+	end)
+end
+
 TearButton.MouseButton1Click:Connect(function()
 	ProfileImage.Image = ""
 	TearButton.Visible = false
@@ -249,51 +192,24 @@ TearButton.MouseButton1Click:Connect(function()
 	end
 	local char = player.Character
 	if char then
-		local humanoid = char:FindFirstChild("Humanoid")
-		if humanoid then
-			StopAllAnimations(humanoid)
-		end
+		local hum = char:FindFirstChild("Humanoid")
+		if hum then StopAllAnimations(hum) end
 	end
-	GossipCommand.Text = ""  -- 명령어 초기화
+	GossipCommand.Text = ""
 end)
-
--- 이름/디스플레이네임으로 타겟 찾기
-local function FindTargetPlayer(name)
-	for _, p in pairs(Players:GetPlayers()) do
-		if string.lower(p.Name) == string.lower(name) or string.lower(p.DisplayName) == string.lower(name) then
-			return p
-		end
-	end
-	return nil
-end
-
--- 명령어 처리
-local function HandleCommand(text)
-	local args = string.split(text, " ")
-	if #args < 2 then return end
-
-	local command = args[1]:lower()
-	local targetName = table.concat(args, " ", 2)
-	local targetPlayer = FindTargetPlayer(targetName)
-	if not targetPlayer then return end
-
-	UpdateProfileImage(targetPlayer.UserId)
-
-	if command == "suck" then
-		PlaySuckSequence(targetPlayer)
-	elseif command == "fuck" then
-		PlayFuckSequence(targetPlayer)
-	end
-
-	TearButton.Visible = true
-end
 
 GossipCommand.FocusLost:Connect(function(enterPressed)
 	if enterPressed then
-		local text = GossipCommand.Text
-		if text and text ~= "" then
-			HandleCommand(text)
-		end
+		local input = GossipCommand.Text
+		local args = input:split(" ")
+		if #args < 2 then return end
+		local cmd = args[1]:lower()
+		local target = getPlayerByName(args[2])
+		if not target then return end
+		UpdateProfileImage(target.UserId)
+		if cmd == "fuck" then PlayFuck(target)
+		elseif cmd == "suck" then PlaySuck(target) end
+		TearButton.Visible = true
 	end
 end)
 
@@ -301,10 +217,36 @@ ClosedBook.MouseButton1Click:Connect(function()
 	OpenBookFrame.Position = UDim2.new(0.732, 0, 0.284, 0)
 	OpenBookFrame.Visible = true
 	ClosedBook.Visible = false
+end)
 
-	OpenBookImage.Image = "rbxassetid://116810517427218"
-	OpenBookImage.Visible = true
-	OpenBookImage.Position = UDim2.new(0, 0, 0, 0)
-	OpenBookImage.Size = UDim2.new(1, 0, 1, 0)
-	OpenBookImage.BackgroundTransparency = 1
+-- 드래그
+local dragging = false
+local dragStartPos, frameStartPos
+OpenBookFrame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		if input.Target == GossipCommand then return end
+		dragging = true
+		dragStartPos = input.Position
+		frameStartPos = OpenBookFrame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+		local delta = input.Position - dragStartPos
+		OpenBookFrame.Position = UDim2.new(
+			frameStartPos.X.Scale, frameStartPos.X.Offset + delta.X,
+			frameStartPos.Y.Scale, frameStartPos.Y.Offset + delta.Y
+		)
+	end
+end)
+]]
+
+-- 실행
+task.spawn(function()
+	G2L["9"].Parent = G2L["1"]
 end)
