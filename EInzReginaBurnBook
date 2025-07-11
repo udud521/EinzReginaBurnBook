@@ -1,7 +1,5 @@
 local G2L = {}
 
--- UI 생성
-
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
 G2L["1"].IgnoreGuiInset = true
 G2L["1"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
@@ -15,95 +13,63 @@ G2L["2"].BackgroundTransparency = 1
 G2L["2"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 G2L["2"].Image = "rbxassetid://92949541355058"
 G2L["2"].Size = UDim2.new(0, 200, 0, 275)
-G2L["2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["2"].Name = "ClosedBook"
 G2L["2"].Position = UDim2.new(0.83425, 0, 0.27387, 0)
 
 G2L["3"] = Instance.new("Frame", G2L["1"])
 G2L["3"].Active = true
-G2L["3"].BorderSizePixel = 0
-G2L["3"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["3"].BackgroundTransparency = 1
 G2L["3"].Size = UDim2.new(0, 340, 0, 260)
 G2L["3"].Position = UDim2.new(0.73174, 0, 0.28395, 0)
-G2L["3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["3"].Name = "OpenBookFrame"
-G2L["3"].BackgroundTransparency = 1
 
 G2L["4"] = Instance.new("Frame", G2L["3"])
-G2L["4"].ZIndex = 2
-G2L["4"].BorderSizePixel = 0
-G2L["4"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-G2L["4"].Size = UDim2.new(0, 282, 0, 30)
-G2L["4"].Position = UDim2.new(0.08235, 0, 0.20385, 0)
-G2L["4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["4"].Name = "CommandEntry"
 G2L["4"].BackgroundTransparency = 1
+G2L["4"].Size = UDim2.new(0, 115, 0, 115)
+G2L["4"].Position = UDim2.new(0.10277, 0, 0.39231, 0)
+G2L["4"].Name = "ProfileDisplay"
 
-G2L["5"] = Instance.new("Frame", G2L["3"])
-G2L["5"].ZIndex = 2
-G2L["5"].BorderSizePixel = 0
-G2L["5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+G2L["5"] = Instance.new("ImageLabel", G2L["4"])
 G2L["5"].Size = UDim2.new(0, 115, 0, 115)
-G2L["5"].Position = UDim2.new(0.10277, 0, 0.39231, 0)
-G2L["5"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["5"].Name = "ProfileDisplay"
+G2L["5"].Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+G2L["5"].Name = "ProfileImage"
 G2L["5"].BackgroundTransparency = 1
 
-G2L["6"] = Instance.new("ImageLabel", G2L["5"])
-G2L["6"].ZIndex = 2
-G2L["6"].BorderSizePixel = 0
-G2L["6"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-G2L["6"].Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
-G2L["6"].Size = UDim2.new(0, 115, 0, 115)
-G2L["6"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["6"].Name = "ProfileImage"
-G2L["6"].Position = UDim2.new(0, 0, 0, 0)
+G2L["6"] = Instance.new("ImageLabel", G2L["3"])
+G2L["6"].Image = "rbxassetid://116810517427218"
+G2L["6"].Size = UDim2.new(1, 0, 1, 0)
+G2L["6"].Name = "OpenBookImage"
+G2L["6"].BackgroundTransparency = 1
 
 G2L["7"] = Instance.new("ImageButton", G2L["3"])
 G2L["7"].BorderSizePixel = 0
 G2L["7"].BackgroundTransparency = 1
-G2L["7"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-G2L["7"].ZIndex = 2
 G2L["7"].Image = "rbxassetid://127584164564988"
 G2L["7"].Size = UDim2.new(0, 120, 0, 100)
-G2L["7"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 G2L["7"].Name = "TearButton"
-G2L["7"].Rotation = 101
 G2L["7"].Position = UDim2.new(0.77647, 0, 0.52692, 0)
+G2L["7"].Rotation = 101
+G2L["7"].ZIndex = 2
 
-G2L["8"] = Instance.new("ImageLabel", G2L["3"])
-G2L["8"].BorderSizePixel = 0
-G2L["8"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-G2L["8"].Image = "rbxassetid://116810517427218"
-G2L["8"].Size = UDim2.new(1, 0, 1, 0)
-G2L["8"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+G2L["8"] = Instance.new("TextBox", G2L["3"])
+G2L["8"].Name = "GossipCommand"
+G2L["8"].Size = UDim2.new(0, 282, 0, 30)
+G2L["8"].Position = UDim2.new(0.085, 0, 0.204, 0)
 G2L["8"].BackgroundTransparency = 1
-G2L["8"].Name = "OpenBookImage"
+G2L["8"].PlaceholderText = ""
+G2L["8"].Text = ""
+G2L["8"].TextColor3 = Color3.fromRGB(199, 42, 53)
+G2L["8"].TextStrokeColor3 = Color3.fromRGB(199, 42, 53)
+G2L["8"].FontFace = Font.new("rbxasset://fonts/families/Kalam.json")
+G2L["8"].TextSize = 14
+G2L["8"].ClearTextOnFocus = false
+G2L["8"].TextWrapped = true
+G2L["8"].TextXAlignment = Enum.TextXAlignment.Left
 
-G2L["9"] = Instance.new("TextBox", G2L["3"])
-G2L["9"].CursorPosition = -1
-G2L["9"].Name = "GossipCommand"
-G2L["9"].TextXAlignment = Enum.TextXAlignment.Left
-G2L["9"].PlaceholderColor3 = Color3.fromRGB(199, 42, 53)
-G2L["9"].BorderSizePixel = 0
-G2L["9"].TextWrapped = true
-G2L["9"].TextStrokeColor3 = Color3.fromRGB(199, 42, 53)
-G2L["9"].TextSize = 14
-G2L["9"].TextColor3 = Color3.fromRGB(199, 42, 53)
-G2L["9"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-G2L["9"].FontFace = Font.new("rbxasset://fonts/families/Kalam.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-G2L["9"].ClearTextOnFocus = false
-G2L["9"].Size = UDim2.new(0, 282, 0, 30)
-G2L["9"].Position = UDim2.new(0.085, 0, 0.204, 0)
-G2L["9"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-G2L["9"].BackgroundTransparency = 1
-G2L["9"].Text = ""
-
--- LocalScript 구현
-
+-- LocalScript
 local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
@@ -151,8 +117,6 @@ local function UpdateProfileImage(userId)
 	end)
 	if success then
 		ProfileImage.Image = thumb
-	else
-		ProfileImage.Image = ""
 	end
 end
 
@@ -166,18 +130,15 @@ end
 local animationStopFlag = false
 local animationLoopConnection = nil
 
-local function AttachToFrontOf(targetRoot, heightOffset, rotateY, rotateX, distance)
+local function AttachToFrontOf(targetRoot, heightOffset, rotateY, rotateX)
 	local myRoot = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
 	if not myRoot then return end
 	animationStopFlag = false
 	if animationLoopConnection then animationLoopConnection:Disconnect() end
-	
-	distance = distance or 1.2
-	
 	animationLoopConnection = RunService.Stepped:Connect(function()
 		if animationStopFlag or not targetRoot or not myRoot then return end
 		local look = targetRoot.CFrame.LookVector
-		local pos = targetRoot.Position + look * distance + Vector3.new(0, heightOffset or -0.5, 0)
+		local pos = targetRoot.Position + look * 1.4 + Vector3.new(0, heightOffset or -0.5, 0)
 		local cf = CFrame.new(pos, targetRoot.Position)
 		if rotateY then cf = cf * CFrame.Angles(0, math.rad(180), 0) end
 		if rotateX then cf = cf * CFrame.Angles(math.rad(180), 0, 0) end
@@ -185,14 +146,43 @@ local function AttachToFrontOf(targetRoot, heightOffset, rotateY, rotateX, dista
 	end)
 end
 
-local function PlayAnimation(animId, speed)
+local function PlaySuckSequence()
+	local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
+	if not humanoid then return end
+	StopAllAnimations(humanoid)
+	animationStopFlag = false
+	task.spawn(function()
+		while not animationStopFlag do
+			for _, emote in ipairs({
+				{name = "Zombie", id = "4210116953", speed = 3},
+				{name = "Keeping Time", id = "4555808220", speed = 2},
+				{name = "Drummer Moves", id = "7422527690", speed = 2},
+			}) do
+				if animationStopFlag then break end
+				local anim = Instance.new("Animation")
+				anim.AnimationId = "rbxassetid://" .. emote.id
+				local track = humanoid:LoadAnimation(anim)
+				track.Looped = false
+				track:Play()
+				track:AdjustSpeed(emote.speed)
+				local done = false
+				track.Stopped:Connect(function() done = true end)
+				repeat task.wait(0.1) until done or animationStopFlag
+				track:Destroy()
+			end
+		end
+	end)
+end
+
+local function PlayAnimationOnce(id, speed)
 	local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
 	if not humanoid then return end
 	StopAllAnimations(humanoid)
 	local anim = Instance.new("Animation")
-	anim.AnimationId = "rbxassetid://" .. animId
+	anim.AnimationId = "rbxassetid://" .. id
 	local track = humanoid:LoadAnimation(anim)
-	track:Play(0.1)
+	track.Looped = true
+	track:Play()
 	track:AdjustSpeed(speed or 1)
 end
 
@@ -210,34 +200,32 @@ local function HandleCommand(text)
 	end
 	if not targetPlayer then return end
 	UpdateProfileImage(targetPlayer.UserId)
-	local targetChar = targetPlayer.Character
-	local targetRoot = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
+	local targetRoot = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
 	if not targetRoot then return end
 	
 	if cmd == "suck" then
-		PlayAnimation("4210116953", 3)
-		AttachToFrontOf(targetRoot, -0.5, false, false, 2.0)
+		PlaySuckSequence()
+		AttachToFrontOf(targetRoot, -0.2)
 	elseif cmd == "fuck" then
-		PlayAnimation("14884037124", 2)
-		AttachToFrontOf(targetRoot, -0.5, true, false, 2.0)
+		PlayAnimationOnce("14884037124", 2)
+		AttachToFrontOf(targetRoot, -0.5, true)
 	elseif cmd == "69" then
-		PlayAnimation("5918726674", 3)
-		AttachToFrontOf(targetRoot, 0, true, true, 2.0)
+		PlayAnimationOnce("5918726674", 3)
+		AttachToFrontOf(targetRoot, 0, false, true)
 	end
+
 	TearButton.Visible = true
 end
 
 GossipCommand.FocusLost:Connect(function(enter)
-	if enter then
-		HandleCommand(GossipCommand.Text)
-	end
+	if enter then HandleCommand(GossipCommand.Text) end
 end)
 
 TearButton.MouseButton1Click:Connect(function()
 	animationStopFlag = true
 	if animationLoopConnection then animationLoopConnection:Disconnect() end
-	ProfileImage.Image = ""
 	TearButton.Visible = false
+	ProfileImage.Image = ""
 	local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
 	if humanoid then StopAllAnimations(humanoid) end
 end)
@@ -246,10 +234,6 @@ ClosedBook.MouseButton1Click:Connect(function()
 	OpenBookFrame.Visible = true
 	ClosedBook.Visible = false
 	OpenBookImage.Visible = true
-	OpenBookImage.Image = "rbxassetid://116810517427218"
-	OpenBookImage.Position = UDim2.new(0, 0, 0, 0)
-	OpenBookImage.Size = UDim2.new(1, 0, 1, 0)
-	OpenBookImage.BackgroundTransparency = 1
 end)
 
 return G2L["1"]
