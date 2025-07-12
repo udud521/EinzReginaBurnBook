@@ -1,242 +1,380 @@
--- BookGui Script (Full Integration)
-
-local G2L = {}
-
-G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
-G2L["1"].IgnoreGuiInset = true
-G2L["1"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
-G2L["1"].Name = "BookGui"
-G2L["1"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-G2L["1"].ResetOnSpawn = false
-
-G2L["2"] = Instance.new("ImageButton", G2L["1"])
-G2L["2"].BorderSizePixel = 0
-G2L["2"].BackgroundTransparency = 1
-G2L["2"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-G2L["2"].Image = "rbxassetid://92949541355058"
-G2L["2"].Size = UDim2.new(0, 200, 0, 275)
-G2L["2"].Name = "ClosedBook"
-G2L["2"].Position = UDim2.new(0.83425, 0, 0.27387, 0)
-
-G2L["3"] = Instance.new("Frame", G2L["1"])
-G2L["3"].Active = true
-G2L["3"].BackgroundTransparency = 1
-G2L["3"].Size = UDim2.new(0, 340, 0, 260)
-G2L["3"].Position = UDim2.new(0.73174, 0, 0.28395, 0)
-G2L["3"].Name = "OpenBookFrame"
-
-G2L["4"] = Instance.new("Frame", G2L["3"])
-G2L["4"].BackgroundTransparency = 1
-G2L["4"].Size = UDim2.new(0, 115, 0, 115)
-G2L["4"].Position = UDim2.new(0.10277, 0, 0.39231, 0)
-G2L["4"].Name = "ProfileDisplay"
-
-G2L["5"] = Instance.new("ImageLabel", G2L["4"])
-G2L["5"].Size = UDim2.new(0, 115, 0, 115)
-G2L["5"].Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
-G2L["5"].Name = "ProfileImage"
-G2L["5"].BackgroundTransparency = 1
-
-G2L["6"] = Instance.new("ImageLabel", G2L["3"])
-G2L["6"].Image = "rbxassetid://116810517427218"
-G2L["6"].Size = UDim2.new(1, 0, 1, 0)
-G2L["6"].Name = "OpenBookImage"
-G2L["6"].BackgroundTransparency = 1
-
-G2L["7"] = Instance.new("ImageButton", G2L["3"])
-G2L["7"].BorderSizePixel = 0
-G2L["7"].BackgroundTransparency = 1
-G2L["7"].Image = "rbxassetid://127584164564988"
-G2L["7"].Size = UDim2.new(0, 120, 0, 100)
-G2L["7"].Name = "TearButton"
-G2L["7"].Position = UDim2.new(0.77647, 0, 0.52692, 0)
-G2L["7"].Rotation = 101
-G2L["7"].ZIndex = 2
-
-G2L["8"] = Instance.new("TextBox", G2L["3"])
-G2L["8"].Name = "GossipCommand"
-G2L["8"].Size = UDim2.new(0, 282, 0, 30)
-G2L["8"].Position = UDim2.new(0.085, 0, 0.204, 0)
-G2L["8"].BackgroundTransparency = 1
-G2L["8"].PlaceholderText = ""
-G2L["8"].Text = ""
-G2L["8"].TextColor3 = Color3.fromRGB(199, 42, 53)
-G2L["8"].TextStrokeColor3 = Color3.fromRGB(199, 42, 53)
-G2L["8"].FontFace = Font.new("rbxasset://fonts/families/Kalam.json")
-G2L["8"].TextSize = 20
-G2L["8"].ClearTextOnFocus = false
-G2L["8"].TextWrapped = true
-G2L["8"].TextXAlignment = Enum.TextXAlignment.Left
-
--- LocalScript
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local PhysicsService = game:GetService("PhysicsService")
 
 local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-local bookGui = playerGui:WaitForChild("BookGui")
 
-local ClosedBook = bookGui:WaitForChild("ClosedBook")
-local OpenBookFrame = bookGui:WaitForChild("OpenBookFrame")
-local OpenBookImage = OpenBookFrame:WaitForChild("OpenBookImage")
-local GossipCommand = OpenBookFrame:WaitForChild("GossipCommand")
-local TearButton = OpenBookFrame:WaitForChild("TearButton")
-local ProfileDisplay = OpenBookFrame:WaitForChild("ProfileDisplay")
-local ProfileImage = ProfileDisplay:WaitForChild("ProfileImage")
+-- ScreenGui 생성
+local bookGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+bookGui.IgnoreGuiInset = true
+bookGui.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
+bookGui.Name = "BookGui"
+bookGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+bookGui.ResetOnSpawn = false
 
-OpenBookFrame.Visible = false
-TearButton.Visible = false
-OpenBookImage.Visible = false
+-- ClosedBook (ImageButton)
+local closedBook = Instance.new("ImageButton", bookGui)
+closedBook.BorderSizePixel = 0
+closedBook.BackgroundTransparency = 1
+closedBook.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+closedBook.Image = "rbxassetid://92949541355058"
+closedBook.Size = UDim2.new(0, 200, 0, 275)
+closedBook.BorderColor3 = Color3.fromRGB(0, 0, 0)
+closedBook.Name = "ClosedBook"
+closedBook.Position = UDim2.new(0.83425, 0, 0.27387, 0)
 
+-- OpenBookFrame (Frame)
+local openBookFrame = Instance.new("Frame", bookGui)
+openBookFrame.Active = true
+openBookFrame.BorderSizePixel = 0
+openBookFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+openBookFrame.Size = UDim2.new(0, 340, 0, 260)
+openBookFrame.Position = UDim2.new(0.73174, 0, 0.28395, 0)
+openBookFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+openBookFrame.Name = "OpenBookFrame"
+openBookFrame.BackgroundTransparency = 1
+
+-- CommandEntry (Frame)
+local commandEntry = Instance.new("Frame", openBookFrame)
+commandEntry.ZIndex = 2
+commandEntry.BorderSizePixel = 0
+commandEntry.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+commandEntry.Size = UDim2.new(0, 282, 0, 30)
+commandEntry.Position = UDim2.new(0.08235, 0, 0.20385, 0)
+commandEntry.BorderColor3 = Color3.fromRGB(0, 0, 0)
+commandEntry.Name = "CommandEntry"
+commandEntry.BackgroundTransparency = 1
+
+-- ProfileDisplay (Frame)
+local profileDisplay = Instance.new("Frame", openBookFrame)
+profileDisplay.ZIndex = 2
+profileDisplay.BorderSizePixel = 0
+profileDisplay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+profileDisplay.Size = UDim2.new(0, 115, 0, 115)
+profileDisplay.Position = UDim2.new(0.10277, 0, 0.39231, 0)
+profileDisplay.BorderColor3 = Color3.fromRGB(0, 0, 0)
+profileDisplay.Name = "ProfileDisplay"
+profileDisplay.BackgroundTransparency = 1
+
+-- ProfileImage (ImageLabel)
+local profileImage = Instance.new("ImageLabel", profileDisplay)
+profileImage.ZIndex = 2
+profileImage.BorderSizePixel = 0
+profileImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+profileImage.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+profileImage.Size = UDim2.new(0, 115, 0, 115)
+profileImage.BorderColor3 = Color3.fromRGB(0, 0, 0)
+profileImage.Name = "ProfileImage"
+profileImage.Position = UDim2.new(0.00034, 0, 0, 0)
+
+-- TearButton (ImageButton)
+local tearButton = Instance.new("ImageButton", openBookFrame)
+tearButton.BorderSizePixel = 0
+tearButton.BackgroundTransparency = 1
+tearButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+tearButton.ZIndex = 2
+tearButton.Image = "rbxassetid://127584164564988"
+tearButton.Size = UDim2.new(0, 120, 0, 100)
+tearButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+tearButton.Name = "TearButton"
+tearButton.Rotation = 101
+tearButton.Position = UDim2.new(0.77647, 0, 0.52692, 0)
+
+-- OpenBookImage (ImageLabel)
+local openBookImage = Instance.new("ImageLabel", openBookFrame)
+openBookImage.BorderSizePixel = 0
+openBookImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+openBookImage.Image = "rbxassetid://116810517427218"
+openBookImage.Size = UDim2.new(1, 0, 1, 0)
+openBookImage.BorderColor3 = Color3.fromRGB(0, 0, 0)
+openBookImage.BackgroundTransparency = 1
+openBookImage.Name = "OpenBookImage"
+
+-- GossipCommand (TextBox)
+local gossipCommand = Instance.new("TextBox", openBookFrame)
+gossipCommand.CursorPosition = -1
+gossipCommand.Name = "GossipCommand"
+gossipCommand.TextXAlignment = Enum.TextXAlignment.Left
+gossipCommand.PlaceholderColor3 = Color3.fromRGB(199, 42, 53)
+gossipCommand.BorderSizePixel = 0
+gossipCommand.TextWrapped = true
+gossipCommand.TextStrokeColor3 = Color3.fromRGB(199, 42, 53)
+gossipCommand.TextSize = 14
+gossipCommand.TextColor3 = Color3.fromRGB(199, 42, 53)
+gossipCommand.TextScaled = true
+gossipCommand.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+gossipCommand.FontFace = Font.new("rbxasset://fonts/families/Kalam.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+gossipCommand.ClearTextOnFocus = false
+gossipCommand.Size = UDim2.new(0, 282, 0, 30)
+gossipCommand.Position = UDim2.new(0.085, 0, 0.204, 0)
+gossipCommand.BorderColor3 = Color3.fromRGB(0, 0, 0)
+gossipCommand.Text = ""
+gossipCommand.BackgroundTransparency = 1
+
+-- 초기 UI 상태
+openBookFrame.Visible = false
+tearButton.Visible = false
+openBookImage.Visible = false
+
+-- 드래그용 변수
 local dragging = false
 local dragStartPos, frameStartPos
 
-OpenBookFrame.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 and input.Target ~= GossipCommand then
-		dragging = true
-		dragStartPos = input.Position
-		frameStartPos = OpenBookFrame.Position
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then dragging = false end
-		end)
-	end
+-- 드래그 시작
+openBookFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        local ok, target = pcall(function() return input.Target end)
+        if ok and target == gossipCommand then return end
+
+        dragging = true
+        dragStartPos = input.Position
+        frameStartPos = openBookFrame.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
 end)
 
+-- 드래그 중 위치 업데이트
 UserInputService.InputChanged:Connect(function(input)
-	if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-		local delta = input.Position - dragStartPos
-		OpenBookFrame.Position = UDim2.new(
-			frameStartPos.X.Scale, frameStartPos.X.Offset + delta.X,
-			frameStartPos.Y.Scale, frameStartPos.Y.Offset + delta.Y
-		)
-	end
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local delta = input.Position - dragStartPos
+        openBookFrame.Position = UDim2.new(
+            frameStartPos.X.Scale, frameStartPos.X.Offset + delta.X,
+            frameStartPos.Y.Scale, frameStartPos.Y.Offset + delta.Y
+        )
+    end
 end)
 
+-- 프로필 이미지 업데이트
 local function UpdateProfileImage(userId)
-	local success, thumb = pcall(function()
-		return Players:GetUserThumbnailAsync(userId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
-	end)
-	if success then
-		ProfileImage.Image = thumb
-	end
+    local success, thumb = pcall(function()
+        return Players:GetUserThumbnailAsync(userId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+    end)
+    if success then
+        profileImage.Image = thumb
+    else
+        profileImage.Image = ""
+    end
 end
 
+-- 애니메이션 정지 함수
 local function StopAllAnimations(humanoid)
-	for _, track in pairs(humanoid:GetPlayingAnimationTracks()) do
-		track:Stop()
-		track:Destroy()
-	end
+    for _, track in pairs(humanoid:GetPlayingAnimationTracks()) do
+        track:Stop()
+        track:Destroy()
+    end
 end
 
-local animationStopFlag = false
 local animationLoopConnection = nil
+local animationStopFlag = false
 
-local function AttachToFrontOf(targetRoot, heightOffset, rotateY, rotateX)
-	local myRoot = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
-	if not myRoot then return end
-	animationStopFlag = false
-	if animationLoopConnection then animationLoopConnection:Disconnect() end
-	animationLoopConnection = RunService.Stepped:Connect(function()
-		if animationStopFlag or not targetRoot or not myRoot then return end
-		local look = targetRoot.CFrame.LookVector
-		local distance = 1.8
-		local pos = targetRoot.Position + look * distance + Vector3.new(0, heightOffset or -0.5, 0)
-		local cf = CFrame.new(pos, targetRoot.Position)
-		if rotateY then cf = cf * CFrame.Angles(0, math.rad(180), 0) end
-		if rotateX then cf = cf * CFrame.Angles(math.rad(180), 0, 0) end
-		myRoot.CFrame = cf
-	end)
+local suckAnimations = {
+    {name = "Zombie", id = "4210116953", speed = 3},
+    {name = "Keeping Time", id = "4555808220", speed = 2},
+    {name = "Drummer Moves", id = "7422527690", speed = 2},
+}
+
+-- 충돌 그룹 설정
+local groupName = "NoCollideAll"
+local function applyNoCollide(character)
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CollisionGroup = groupName
+        end
+    end
 end
 
-local function PlaySuckSequence()
-	local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
-	if not humanoid then return end
-	StopAllAnimations(humanoid)
-	animationStopFlag = false
-	task.spawn(function()
-		while not animationStopFlag do
-			for _, emote in ipairs({
-				{name = "Zombie", id = "4210116953", speed = 3},
-				{name = "Keeping Time", id = "4555808220", speed = 2},
-				{name = "Drummer Moves", id = "7422527690", speed = 2},
-			}) do
-				if animationStopFlag then break end
-				local anim = Instance.new("Animation")
-				anim.AnimationId = "rbxassetid://" .. emote.id
-				local track = humanoid:LoadAnimation(anim)
-				track.Looped = false
-				track:Play()
-				track:AdjustSpeed(emote.speed)
-				local done = false
-				track.Stopped:Connect(function() done = true end)
-				repeat task.wait(0.1) until done or animationStopFlag
-				track:Destroy()
-			end
-		end
-	end)
+local function revertNoCollide(character)
+    for _, part in pairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.CollisionGroup = "Default"
+        end
+    end
 end
 
-local function PlayAnimationOnce(id, speed)
-	local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
-	if not humanoid then return end
-	StopAllAnimations(humanoid)
-	local anim = Instance.new("Animation")
-	anim.AnimationId = "rbxassetid://" .. id
-	local track = humanoid:LoadAnimation(anim)
-	track.Looped = true
-	track:Play()
-	track:AdjustSpeed(speed or 1)
+-- suck 명령어 애니메이션
+local function PlaySuckSequence(targetPlayer)
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:WaitForChild("Humanoid")
+    local root = char:WaitForChild("HumanoidRootPart")
+    local targetChar = targetPlayer.Character
+    local targetRoot = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
+    if not targetRoot then return end
+
+    StopAllAnimations(humanoid)
+    animationStopFlag = false
+
+    if animationLoopConnection then
+        animationLoopConnection:Disconnect()
+    end
+
+    animationLoopConnection = RunService.Stepped:Connect(function()
+        if root and targetRoot and not animationStopFlag then
+            local forward = targetRoot.CFrame.LookVector.Unit
+            local offset = forward * 1.2 + Vector3.new(0, -0.5, 0)
+            root.CFrame = CFrame.new(targetRoot.Position + offset, targetRoot.Position)
+        end
+    end)
+
+    task.spawn(function()
+        while not animationStopFlag do
+            for _, emote in ipairs(suckAnimations) do
+                if animationStopFlag then break end
+                local anim = Instance.new("Animation")
+                anim.AnimationId = "rbxassetid://" .. emote.id
+                local track = humanoid:LoadAnimation(anim)
+                track.Looped = false
+                track:Play()
+                track:AdjustSpeed(emote.speed or 1)
+                local done = false
+                track.Stopped:Connect(function() done = true end)
+                repeat task.wait(0.1) until done or animationStopFlag
+                track:Destroy()
+            end
+        end
+    end)
 end
 
+-- fuck 명령어 애니메이션
+local function PlayFuckSequence(targetPlayer)
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:WaitForChild("Humanoid")
+    local root = char:WaitForChild("HumanoidRootPart")
+    local targetChar = targetPlayer.Character
+    local targetRoot = targetChar and targetChar:FindFirstChild("HumanoidRootPart")
+    if not targetRoot then return end
+
+    StopAllAnimations(humanoid)
+    animationStopFlag = false
+
+    if animationLoopConnection then
+        animationLoopConnection:Disconnect()
+    end
+
+    local offsetPos = targetRoot.Position - Vector3.new(0, 1, 0)
+    local lookVector = targetRoot.CFrame.LookVector
+    root.CFrame = CFrame.new(offsetPos, offsetPos + lookVector)
+
+    local anim = Instance.new("Animation")
+    anim.AnimationId = "rbxassetid://7942885103"
+    local track = humanoid:LoadAnimation(anim)
+    track.Looped = false
+    track:Play()
+    track:AdjustSpeed(2)
+
+    task.spawn(function()
+        while not animationStopFlag do
+            if track.TimePosition >= 1.85 then
+                track.TimePosition = 0
+            end
+            task.wait(0.03)
+        end
+    end)
+end
+
+-- TearButton 클릭 시 리셋
+tearButton.MouseButton1Click:Connect(function()
+    profileImage.Image = ""
+    tearButton.Visible = false
+    animationStopFlag = true
+    if animationLoopConnection then
+        animationLoopConnection:Disconnect()
+        animationLoopConnection = nil
+    end
+    local char = player.Character
+    if char then
+        local humanoid = char:FindFirstChild("Humanoid")
+        if humanoid then
+            StopAllAnimations(humanoid)
+        end
+        revertNoCollide(char)
+    end
+end)
+
+-- 플레이어 찾기
+local function FindPlayerByNameOrDisplayName(name)
+    name = name:lower()
+    for _, plr in pairs(Players:GetPlayers()) do
+        if plr.Name:lower() == name or plr.DisplayName:lower() == name then
+            return plr
+        end
+    end
+    return nil
+end
+
+-- 명령어 처리
 local function HandleCommand(text)
-	local args = string.split(text, " ")
-	if #args < 2 then return end
-	local cmd = args[1]:lower()
-	local targetName = args[2]
-	local targetPlayer
-	for _, p in ipairs(Players:GetPlayers()) do
-		if p.Name:lower() == targetName:lower() or p.DisplayName:lower() == targetName:lower() then
-			targetPlayer = p
-			break
-		end
-	end
-	if not targetPlayer then return end
-	UpdateProfileImage(targetPlayer.UserId)
-	local targetRoot = targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart")
-	if not targetRoot then return end
+    local args = string.split(text, " ")
+    if #args < 2 then return end
 
-	if cmd == "suck" then
-		PlaySuckSequence()
-		AttachToFrontOf(targetRoot, -1.0)
-	elseif cmd == "fuck" then
-		PlayAnimationOnce("14884037124", 1.5)
-		AttachToFrontOf(targetRoot, -0.5, true)
-	elseif cmd == "69" then
-		PlayAnimationOnce("5918726674", 3)
-		AttachToFrontOf(targetRoot, 0, true, true)
-	end
+    local command = args[1]:lower()
+    local targetName = args[2]:lower()
+    local targetPlayer = FindPlayerByNameOrDisplayName(targetName)
+    if not targetPlayer then return end
 
-	TearButton.Visible = true
+    UpdateProfileImage(targetPlayer.UserId)
+
+    if command == "suck" then
+        PlaySuckSequence(targetPlayer)
+    elseif command == "fuck" then
+        PlayFuckSequence(targetPlayer)
+    elseif command == "69" then
+        local char = player.Character or player.CharacterAdded:Wait()
+        applyNoCollide(char)
+    end
+
+    tearButton.Visible = true
 end
 
-GossipCommand.FocusLost:Connect(function(enter)
-	if enter then HandleCommand(GossipCommand.Text) end
+-- 엔터 입력 시 처리
+gossipCommand.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        local text = gossipCommand.Text
+        if text and text ~= "" then
+            HandleCommand(text)
+        end
+    end
 end)
 
-TearButton.MouseButton1Click:Connect(function()
-	animationStopFlag = true
-	if animationLoopConnection then animationLoopConnection:Disconnect() end
-	TearButton.Visible = false
-	ProfileImage.Image = ""
-	local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
-	if humanoid then StopAllAnimations(humanoid) end
+-- 닫힌 책 클릭 시 열기
+closedBook.MouseButton1Click:Connect(function()
+    openBookFrame.Position = UDim2.new(0.732, 0, 0.284, 0)
+    openBookFrame.Visible = true
+    closedBook.Visible = false
+
+    openBookImage.Image = "rbxassetid://116810517427218"
+    openBookImage.Visible = true
+    openBookImage.Position = UDim2.new(0, 0, 0, 0)
+    openBookImage.Size = UDim2.new(1, 0, 1, 0)
+    openBookImage.BackgroundTransparency = 1
 end)
 
-ClosedBook.MouseButton1Click:Connect(function()
-	OpenBookFrame.Visible = true
-	ClosedBook.Visible = false
-	OpenBookImage.Visible = true
+-- 충돌 그룹 초기 생성
+pcall(function()
+    if not table.find(PhysicsService:GetCollisionGroups(), groupName) then
+        PhysicsService:CreateCollisionGroup(groupName)
+    end
+    PhysicsService:CollisionGroupSetCollidable(groupName, "Default", false)
+    PhysicsService:CollisionGroupSetCollidable(groupName, groupName, false)
 end)
 
-return G2L["1"]
+-- 캐릭터 충돌 그룹 최초 적용 및 리스폰 처리
+player.CharacterAdded:Connect(function(newChar)
+    newChar:WaitForChild("HumanoidRootPart")
+    applyNoCollide(newChar)
+end)
+
+RunService.Stepped:Connect(function()
+    local char = player.Character
+    if not char then return end
+    for _, part in pairs(char:GetDescendants()) do
+        if part:IsA("BasePart") and part.CollisionGroup ~= groupName then
+            part.CollisionGroup = groupName
+        end
+    end
+end)
